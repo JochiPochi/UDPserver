@@ -34,13 +34,12 @@ int NetworkSetup(char *portNumber){
 			perror("sockfd: bind");
 			continue;
 		}
-		return sockfd;
-		freeaddrinfo(ai);
 		break;
 	}
 	if (p == NULL) {
 		fprintf(stderr, "selectserver: failed to bind\n");
 		return -1;
 	}
-	return 0;
+	freeaddrinfo(ai);
+	return sockfd;
 }
